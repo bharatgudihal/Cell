@@ -1,0 +1,305 @@
+fileFormatVersion: 2
+guid: c052a64119442114d8be360376b6fdc1
+timeCreated: 1481620812
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: new3:Head
+    100002: new3:HeadTop_End
+    100004: new3:Hips
+    100006: new3:LeftArm
+    100008: new3:LeftFoot
+    100010: new3:LeftForeArm
+    100012: new3:LeftHand
+    100014: new3:LeftHandIndex1
+    100016: new3:LeftHandIndex2
+    100018: new3:LeftHandIndex3
+    100020: new3:LeftHandIndex4
+    100022: new3:LeftHandRing1
+    100024: new3:LeftHandRing2
+    100026: new3:LeftHandRing3
+    100028: new3:LeftHandRing4
+    100030: new3:LeftHandThumb1
+    100032: new3:LeftHandThumb2
+    100034: new3:LeftHandThumb3
+    100036: new3:LeftHandThumb4
+    100038: new3:LeftLeg
+    100040: new3:LeftShoulder
+    100042: new3:LeftToe_End
+    100044: new3:LeftToeBase
+    100046: new3:LeftUpLeg
+    100048: new3:Neck
+    100050: new3:RightArm
+    100052: new3:RightFoot
+    100054: new3:RightForeArm
+    100056: new3:RightHand
+    100058: new3:RightHandIndex1
+    100060: new3:RightHandIndex2
+    100062: new3:RightHandIndex3
+    100064: new3:RightHandIndex4
+    100066: new3:RightHandRing1
+    100068: new3:RightHandRing2
+    100070: new3:RightHandRing3
+    100072: new3:RightHandRing4
+    100074: new3:RightHandThumb1
+    100076: new3:RightHandThumb2
+    100078: new3:RightHandThumb3
+    100080: new3:RightHandThumb4
+    100082: new3:RightLeg
+    100084: new3:RightShoulder
+    100086: new3:RightToe_End
+    100088: new3:RightToeBase
+    100090: new3:RightUpLeg
+    100092: new3:Spine
+    100094: new3:Spine1
+    100096: new3:Spine2
+    100098: //RootNode
+    400000: new3:Head
+    400002: new3:HeadTop_End
+    400004: new3:Hips
+    400006: new3:LeftArm
+    400008: new3:LeftFoot
+    400010: new3:LeftForeArm
+    400012: new3:LeftHand
+    400014: new3:LeftHandIndex1
+    400016: new3:LeftHandIndex2
+    400018: new3:LeftHandIndex3
+    400020: new3:LeftHandIndex4
+    400022: new3:LeftHandRing1
+    400024: new3:LeftHandRing2
+    400026: new3:LeftHandRing3
+    400028: new3:LeftHandRing4
+    400030: new3:LeftHandThumb1
+    400032: new3:LeftHandThumb2
+    400034: new3:LeftHandThumb3
+    400036: new3:LeftHandThumb4
+    400038: new3:LeftLeg
+    400040: new3:LeftShoulder
+    400042: new3:LeftToe_End
+    400044: new3:LeftToeBase
+    400046: new3:LeftUpLeg
+    400048: new3:Neck
+    400050: new3:RightArm
+    400052: new3:RightFoot
+    400054: new3:RightForeArm
+    400056: new3:RightHand
+    400058: new3:RightHandIndex1
+    400060: new3:RightHandIndex2
+    400062: new3:RightHandIndex3
+    400064: new3:RightHandIndex4
+    400066: new3:RightHandRing1
+    400068: new3:RightHandRing2
+    400070: new3:RightHandRing3
+    400072: new3:RightHandRing4
+    400074: new3:RightHandThumb1
+    400076: new3:RightHandThumb2
+    400078: new3:RightHandThumb3
+    400080: new3:RightHandThumb4
+    400082: new3:RightLeg
+    400084: new3:RightShoulder
+    400086: new3:RightToe_End
+    400088: new3:RightToeBase
+    400090: new3:RightUpLeg
+    400092: new3:Spine
+    400094: new3:Spine1
+    400096: new3:Spine2
+    400098: //RootNode
+    7400000: jog_forward_diagonal_inPlace
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: jog_forward_diagonal_inPlace
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: new3:Hips
+        weight: 1
+      - path: new3:Hips/new3:LeftUpLeg
+        weight: 1
+      - path: new3:Hips/new3:LeftUpLeg/new3:LeftLeg
+        weight: 1
+      - path: new3:Hips/new3:LeftUpLeg/new3:LeftLeg/new3:LeftFoot
+        weight: 1
+      - path: new3:Hips/new3:LeftUpLeg/new3:LeftLeg/new3:LeftFoot/new3:LeftToeBase
+        weight: 1
+      - path: new3:Hips/new3:LeftUpLeg/new3:LeftLeg/new3:LeftFoot/new3:LeftToeBase/new3:LeftToe_End
+        weight: 1
+      - path: new3:Hips/new3:RightUpLeg
+        weight: 1
+      - path: new3:Hips/new3:RightUpLeg/new3:RightLeg
+        weight: 1
+      - path: new3:Hips/new3:RightUpLeg/new3:RightLeg/new3:RightFoot
+        weight: 1
+      - path: new3:Hips/new3:RightUpLeg/new3:RightLeg/new3:RightFoot/new3:RightToeBase
+        weight: 1
+      - path: new3:Hips/new3:RightUpLeg/new3:RightLeg/new3:RightFoot/new3:RightToeBase/new3:RightToe_End
+        weight: 1
+      - path: new3:Hips/new3:Spine
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandIndex1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandIndex1/new3:LeftHandIndex2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandIndex1/new3:LeftHandIndex2/new3:LeftHandIndex3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandIndex1/new3:LeftHandIndex2/new3:LeftHandIndex3/new3:LeftHandIndex4
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandRing1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandRing1/new3:LeftHandRing2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandRing1/new3:LeftHandRing2/new3:LeftHandRing3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandRing1/new3:LeftHandRing2/new3:LeftHandRing3/new3:LeftHandRing4
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandThumb1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandThumb1/new3:LeftHandThumb2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandThumb1/new3:LeftHandThumb2/new3:LeftHandThumb3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:LeftShoulder/new3:LeftArm/new3:LeftForeArm/new3:LeftHand/new3:LeftHandThumb1/new3:LeftHandThumb2/new3:LeftHandThumb3/new3:LeftHandThumb4
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:Neck
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:Neck/new3:Head
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:Neck/new3:Head/new3:HeadTop_End
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandIndex1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandIndex1/new3:RightHandIndex2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandIndex1/new3:RightHandIndex2/new3:RightHandIndex3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandIndex1/new3:RightHandIndex2/new3:RightHandIndex3/new3:RightHandIndex4
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandRing1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandRing1/new3:RightHandRing2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandRing1/new3:RightHandRing2/new3:RightHandRing3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandRing1/new3:RightHandRing2/new3:RightHandRing3/new3:RightHandRing4
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandThumb1
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandThumb1/new3:RightHandThumb2
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandThumb1/new3:RightHandThumb2/new3:RightHandThumb3
+        weight: 1
+      - path: new3:Hips/new3:Spine/new3:Spine1/new3:Spine2/new3:RightShoulder/new3:RightArm/new3:RightForeArm/new3:RightHand/new3:RightHandThumb1/new3:RightHandThumb2/new3:RightHandThumb3/new3:RightHandThumb4
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
