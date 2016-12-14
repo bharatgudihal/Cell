@@ -11,7 +11,14 @@ public class PlayerController : MonoBehaviour {
     public float forwardSpeed;//the move speed of the player
     public float turnSpeed;//how fast the player turns
     float forwardInput;//member variable for the forwardInput
-    float turnInput;//member variable for our turnInput 
+    float turnInput;//member variable for our turnInput
+	private float vel = 0f;
+
+	[SerializeField]
+	GameObject playerCamera;
+
+	[SerializeField]
+	float smoothness;
 
     public Vector3 MoveVector { get; set; }// this is a carry over from a tutorial i found. it was used in the snap method I wanted to use.
 
@@ -27,22 +34,21 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
     {     
         Move();
-        Turn();
+		Turn();
     }
     private void Update()
     {
         forwardInput = Input.GetAxis("Vertical");//look for input in the 'w' or left joystick        
         turnInput = Input.GetAxis("Horizontal");//look for the rotation or 'a' and 'd' or left and right on the joystick
-
         playerAnim.SetFloat("forwardInput", forwardInput);
         playerAnim.SetFloat("rotInput", turnInput);
     }
     void Turn()
     {
-        float turn = turnInput * turnSpeed * Time.deltaTime;//set your turn value to be the input given multiplied by a speed and time 
-        Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);// convert to an eluer
+		Quaternion lookRotation = playerCamera.transform.rotation;
+		lookRotation.eulerAngles = new Vector3(0f, Mathf.LerpAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y, smoothness), 0f);
+		//transform.rotation = lookRotation;
 
-        rbody.MoveRotation(rbody.rotation * turnRotation);//set your new rotation. fucking math.
     }
     void Move()
     {

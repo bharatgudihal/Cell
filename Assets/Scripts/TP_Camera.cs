@@ -51,7 +51,7 @@ public class TP_Camera : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void LateUpdate ()
+	void FixedUpdate ()
     {
         if (TargetLookAt == null)
             return;
@@ -98,7 +98,7 @@ public class TP_Camera : MonoBehaviour {
 
         position = new Vector3(posX, posY, posZ);
         transform.position = position;
-        transform.LookAt(TargetLookAt);
+		transform.LookAt(TargetLookAt);
     }
     public void Reset()
     {
