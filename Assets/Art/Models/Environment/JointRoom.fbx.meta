@@ -42,8 +42,12 @@ ModelImporter:
     400032: transform8
     400034: transform9
     2300000: pCube36
+    2300002: //RootNode
     3300000: pCube36
+    3300002: //RootNode
     4300000: pCube36
+    4300002: polySurface9
+    4300004: JointRoom
     9500000: //RootNode
   materials:
     importMaterials: 1
