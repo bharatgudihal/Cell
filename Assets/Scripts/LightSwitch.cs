@@ -5,18 +5,29 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour {
 
     public GameObject spotLight;
+    bool canUse;
+    bool lightOn;
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q)&&canUse)
+        {
+            lightOn = !lightOn;
+            spotLight.SetActive(lightOn);
+        }
+
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            spotLight.SetActive(true);
+            canUse = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            spotLight.SetActive(false);
+            canUse = false;
         }
     }
 }
