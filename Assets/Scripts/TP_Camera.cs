@@ -37,6 +37,8 @@ public class TP_Camera : MonoBehaviour {
 
     public bool invertControls;
 
+	bool moveTowards;
+
     void Awake()
     {
         Instance = this;
@@ -61,6 +63,7 @@ public class TP_Camera : MonoBehaviour {
         UpdatePosition();
 
     }
+
     void HandlePlayerInput()
     {
         //float deadZone = 0.1f;
@@ -77,6 +80,7 @@ public class TP_Camera : MonoBehaviour {
 
         
     }
+
     void CalculateDesiredPosition()
     {
         distance = Mathf.SmoothDamp(distance, desiredDistance, ref velDistance, distanceSmooth);
@@ -90,6 +94,7 @@ public class TP_Camera : MonoBehaviour {
         Quaternion rotation = Quaternion.Euler(rotationX, rotationY, 0);
         return TargetLookAt.position + rotation * direction;
     }
+
     void UpdatePosition()
     {
         float posX = Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, xSmooth);
@@ -100,42 +105,16 @@ public class TP_Camera : MonoBehaviour {
         transform.position = position;
 		transform.LookAt(TargetLookAt);
     }
-    public void Reset()
+
+    void Reset()
     {
         moveX = 0f;
         moveY = 10f;
         distance = startDistance;
         desiredDistance = distance;
     }
-    public static void UseExistingOrCreateNewMainCamera()
-    {
-        /*
-        GameObject tempCamera;
-        GameObject targetLookAt;
-        TP_Camera myCamera;
 
-        if(Camera.main != null)
-        {
-            tempCamera = Camera.main.gameObject;
-        }
-        else
-        {
-            tempCamera = new GameObject("Main Camera");
-            tempCamera.AddComponent<Camera>();
-            tempCamera.tag = "MainCamera";
-        }
-        tempCamera.AddComponent<TP_Camera>();
-        myCamera = tempCamera.GetComponent<TP_Camera>() as TP_Camera;
-
-        targetLookAt = GameObject.Find("targetLookAt") as GameObject;
-
-        if(targetLookAt == null)
-        {
-            targetLookAt = new GameObject("targetLookAt");
-            targetLookAt.transform.position = Vector3.zero;
-        }
-
-        myCamera.TargetLookAt = targetLookAt.transform;
-        */
-    }
+	void OnTriggerEnter(Collider collider){
+		
+	}
 }

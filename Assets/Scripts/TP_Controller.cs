@@ -17,9 +17,6 @@ public class TP_Controller : MonoBehaviour {
         //characterController = GetComponent("CharacterController") as CharacterController;
         rbody = GetComponent<Rigidbody>();
 
-        //instance = this;
-        TP_Camera.UseExistingOrCreateNewMainCamera();
-
     }
     // Update is called once per frame
     void FixedUpdate()
