@@ -43,30 +43,36 @@ public class PlayerController : MonoBehaviour {
     }
     private void Update()
     {
-        forwardInput = Input.GetAxis("Vertical");//look for input in the 'w' or left joystick
-		turnInput = Input.GetAxis("Horizontal");//look for the rotation or 'a' and 'd' or left and right on the joystick
+        forwardInput = Input.GetAxis("Vertical");
+		if (forwardInput > 0.5f) {
+			forwardInput = 1f;
+		} else if (forwardInput < -0.5f) {
+			forwardInput = -1f;
+		} else {
+			forwardInput = 0f;
+		}
+		turnInput = Input.GetAxis("Horizontal");
+		if (turnInput > 0.5f) {
+			turnInput = 1f;
+		} else if (turnInput < -0.5f) {
+			turnInput = -1f;
+		} else {
+			turnInput = 0f;
+		}
 		if (forwardInput == 1) {
 			turnLeft = false;
 			turnRight = false;
 		}        
-		if (turnInput == 1 && !turnLeft) {
-			print ("Left turn detected");
+		if (turnInput == 1) {
+			//print ("Left turn detected");
 			turnLeft = true;
-			if (turnRight) {
-				turnRight = false;
-				destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, 90f, 0f);
-			} else {
-				destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, 90f, 0f);
-			}
-		} else if (turnInput == -1 && !turnRight) {
-			print ("Right turn detected");
+			turnRight = false;
+			destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, 90f, 0f);
+		} else if (turnInput == -1) {
+			//print ("Right turn detected");
 			turnRight = true;
-			if (turnLeft) {
-				turnLeft = false;
-				destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, -90f, 0f);
-			} else {
-				destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, -90f, 0f);
-			}
+			turnLeft = false;
+			destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, -90f, 0f);
 		}
 		if (forwardInput > 0) {
 			playerAnim.SetFloat ("forwardInput", 1f);
@@ -82,11 +88,11 @@ public class PlayerController : MonoBehaviour {
     }
     void Turn()
     {
-		//if (turnInput != 1 && turnInput != -1 && !turnLeft && !turnRight) {
+		if (turnInput != 1 && turnInput != -1 && !turnLeft && !turnRight) {
 			Quaternion lookRotation = playerCamera.transform.rotation;
 			lookRotation.eulerAngles = new Vector3 (0f, Mathf.LerpAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y, smoothness), 0f);
 			transform.rotation = lookRotation;
-		/*} else {
+		} else {
 			destinationRotation.eulerAngles = new Vector3 (0f, destinationRotation.eulerAngles.y, 0f);
 			rbody.MoveRotation (Quaternion.Lerp (transform.rotation, destinationRotation, smoothness));
 			Vector3 movement = Vector3.zero;
@@ -96,14 +102,14 @@ public class PlayerController : MonoBehaviour {
 				movement = transform.forward * turnInput * -forwardSpeed * Time.deltaTime;
 			}
 			rbody.MovePosition (rbody.position + movement);
-		}*/
+		}
     }
 
     void Move()
     {
         Vector3 forwardMovement = transform.forward * forwardInput * forwardSpeed * Time.deltaTime;
-		Vector3 horizontalMovement = transform.right * turnInput * forwardSpeed * Time.deltaTime;
-		rbody.MovePosition(rbody.position + forwardMovement + horizontalMovement);
+		//Vector3 horizontalMovement = transform.right * turnInput * forwardSpeed * Time.deltaTime;
+		rbody.MovePosition(rbody.position + forwardMovement);
     }
     /**
      * this method is suposed to snap the player to the forward vector of the camera if they move.
