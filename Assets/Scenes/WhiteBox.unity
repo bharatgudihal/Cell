@@ -5696,6 +5696,21 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -2.31
       objectReference: {fileID: 0}
+    - target: {fileID: 114623509760434388, guid: 552927ab4dd505546a380dc3fd5d20b1,
+        type: 2}
+      propertyPath: distanceMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114623509760434388, guid: 552927ab4dd505546a380dc3fd5d20b1,
+        type: 2}
+      propertyPath: distanceMin
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114832024931713632, guid: 552927ab4dd505546a380dc3fd5d20b1,
+        type: 2}
+      propertyPath: smoothness
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 552927ab4dd505546a380dc3fd5d20b1, type: 2}
   m_IsPrefabParent: 0

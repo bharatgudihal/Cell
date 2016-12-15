@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour {
 
     public Rigidbody rbody;
     Animator playerAnim;//a reference for the players animations
-
-    public float forwardSpeed;//the move speed of the player
-    public float turnSpeed;//how fast the player turns
+    public float forwardSpeed;//the move speed of the player    
     float forwardInput;//member variable for the forwardInput
     float turnInput;//member variable for our turnInput
 	float vel1 = 0f;
@@ -26,9 +24,6 @@ public class PlayerController : MonoBehaviour {
 
 	Quaternion destinationRotation;
 
-
-	bool turnLeft = false;
-	bool turnRight = false;
 
 	[SerializeField]
 	Transform pivot;
@@ -95,18 +90,11 @@ public class PlayerController : MonoBehaviour {
 			lastCameraRotation = lookRotation;
 		} else {
 			if (isPlayerMoving) {
-				print (Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward));
-				if (lastStoppedCameraRotation - playerCamera.transform.rotation.eulerAngles.y != 0) {
 					Quaternion lookRotation = playerCamera.transform.rotation;
 					lookRotation.eulerAngles = new Vector3 (0f, Mathf.SmoothDampAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y+Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward), ref vel1, smoothness), 0f);
 					transform.rotation = lookRotation;
 					if (transform.rotation.eulerAngles.y == lookRotation.eulerAngles.y) {						
 						lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
-					}
-				} else {					
-					Quaternion lookRotation;
-					lookRotation = Quaternion.Euler (new Vector3 (0f, Mathf.SmoothDampAngle (transform.rotation.eulerAngles.y, Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward) + lastCameraRotation.eulerAngles.y, ref vel2, smoothness), 0f));
-					transform.rotation = lookRotation;
 				}
 			}
 		}
