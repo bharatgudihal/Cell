@@ -24,10 +24,6 @@ public class PlayerController : MonoBehaviour {
 
 	Quaternion destinationRotation;
 
-
-	[SerializeField]
-	Transform pivot;
-
 	float totalTurn = 0f;
 	float totalForward = 0f;
 	bool isPlayerMoving = false;
