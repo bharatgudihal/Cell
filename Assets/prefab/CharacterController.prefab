@@ -1219,7 +1219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1399716956442782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.57, z: 0.324}
+  m_LocalPosition: {x: 0, y: 1.57, z: 0.102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4405422144908304}
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetLookAt: {fileID: 4550583776817246}
   distance: 0
-  distanceMin: 3
+  distanceMin: 1
   distanceSmooth: 0.05
   distanceMax: 10
   xSensitivity: 5
@@ -1689,6 +1689,7 @@ MonoBehaviour:
   ySmooth: 0.1
   yMinLimit: -40
   yMaxLimit: 80
+  forwardDistance: 0
   invertControls: 0
 --- !u!114 &114832024931713632
 MonoBehaviour:
@@ -1702,8 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 54608873658773220}
-  forwardSpeed: 2
-  turnSpeed: 100
+  forwardSpeed: 3
   playerCamera: {fileID: 1139138388847576}
   smoothness: 0.07
 --- !u!124 &124093355626433890

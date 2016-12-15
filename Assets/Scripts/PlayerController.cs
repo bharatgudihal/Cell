@@ -65,13 +65,7 @@ public class PlayerController : MonoBehaviour {
 			isPlayerMoving = false;
 			lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
 		}
-		if (forwardInput > 0) {
-			playerAnim.SetFloat ("forwardInput", 1f);
-		} else if (forwardInput < 0) {
-			playerAnim.SetFloat ("forwardInput", 1f);
-		} else {
-			playerAnim.SetFloat ("forwardInput", 0f);
-		}
+		playerAnim.SetFloat ("forwardInput", Mathf.Ceil(Mathf.Abs(forwardInput)));
 		if (turnInput == 1 || turnInput == -1) {
 			playerAnim.SetFloat("forwardInput", Mathf.Ceil(Mathf.Abs(turnInput)));
 		}
