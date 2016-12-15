@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour {
     public float turnSpeed;//how fast the player turns
     float forwardInput;//member variable for the forwardInput
     float turnInput;//member variable for our turnInput
-	private float vel = 0f;
+	float vel1 = 0f;
+	float vel2 = 0f;
+	bool cameraMoving;
 
 	[SerializeField]
 	GameObject playerCamera;
@@ -28,6 +30,16 @@ public class PlayerController : MonoBehaviour {
 	bool turnLeft = false;
 	bool turnRight = false;
 
+	[SerializeField]
+	Transform pivot;
+
+	float totalTurn = 0f;
+	float totalForward = 0f;
+	bool isPlayerMoving = false;
+	Quaternion lastCameraRotation = Quaternion.identity;
+
+	float lastStoppedCameraRotation;
+
     // Use this for initialization
     void Awake ()
     {
@@ -35,6 +47,10 @@ public class PlayerController : MonoBehaviour {
         rbody = GetComponent<Rigidbody>();
 
     }
+
+	void Start(){
+		lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
+	}
 	// FixedUpdate is for physics interactions 
 	void FixedUpdate ()
     {     
@@ -44,40 +60,24 @@ public class PlayerController : MonoBehaviour {
     private void Update()
     {
         forwardInput = Input.GetAxis("Vertical");
-		if (forwardInput > 0.5f) {
-			forwardInput = 1f;
-		} else if (forwardInput < -0.5f) {
-			forwardInput = -1f;
-		} else {
-			forwardInput = 0f;
-		}
 		turnInput = Input.GetAxis("Horizontal");
-		if (turnInput > 0.5f) {
-			turnInput = 1f;
-		} else if (turnInput < -0.5f) {
-			turnInput = -1f;
+		if ((Input.GetAxis ("Camera Y") != 0) || (Input.GetAxis ("Camera X") != 0)) {
+			cameraMoving = true;
 		} else {
-			turnInput = 0f;
+			cameraMoving = false;
 		}
-		if (forwardInput == 1) {
-			turnLeft = false;
-			turnRight = false;
-		}        
-		if (turnInput == 1) {
-			//print ("Left turn detected");
-			turnLeft = true;
-			turnRight = false;
-			destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, 90f, 0f);
-		} else if (turnInput == -1) {
-			//print ("Right turn detected");
-			turnRight = true;
-			turnLeft = false;
-			destinationRotation = playerCamera.transform.rotation * Quaternion.Euler (0f, -90f, 0f);
+		if (turnInput != 0f || forwardInput != 0f) {
+			totalTurn = turnInput;
+			totalForward = forwardInput;
+			isPlayerMoving = true;
+		} else {
+			isPlayerMoving = false;
+			lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
 		}
 		if (forwardInput > 0) {
 			playerAnim.SetFloat ("forwardInput", 1f);
 		} else if (forwardInput < 0) {
-			playerAnim.SetFloat ("forwardInput", -1f);
+			playerAnim.SetFloat ("forwardInput", 1f);
 		} else {
 			playerAnim.SetFloat ("forwardInput", 0f);
 		}
@@ -88,30 +88,42 @@ public class PlayerController : MonoBehaviour {
     }
     void Turn()
     {
-		if (turnInput != 1 && turnInput != -1 && !turnLeft && !turnRight) {
+		if (cameraMoving && isPlayerMoving) {
 			Quaternion lookRotation = playerCamera.transform.rotation;
-			lookRotation.eulerAngles = new Vector3 (0f, Mathf.LerpAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y, smoothness), 0f);
+			lookRotation.eulerAngles = new Vector3 (0f, Mathf.SmoothDampAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y, ref vel1, smoothness), 0f);
 			transform.rotation = lookRotation;
+			lastCameraRotation = lookRotation;
 		} else {
-			destinationRotation.eulerAngles = new Vector3 (0f, destinationRotation.eulerAngles.y, 0f);
-			rbody.MoveRotation (Quaternion.Lerp (transform.rotation, destinationRotation, smoothness));
-			Vector3 movement = Vector3.zero;
-			if (turnLeft) {
-				movement = transform.forward * turnInput * forwardSpeed * Time.deltaTime;
-			} else if (turnRight) {
-				movement = transform.forward * turnInput * -forwardSpeed * Time.deltaTime;
+			if (isPlayerMoving) {
+				print (Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward));
+				if (lastStoppedCameraRotation - playerCamera.transform.rotation.eulerAngles.y != 0) {
+					Quaternion lookRotation = playerCamera.transform.rotation;
+					lookRotation.eulerAngles = new Vector3 (0f, Mathf.SmoothDampAngle (transform.rotation.eulerAngles.y, lookRotation.eulerAngles.y+Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward), ref vel1, smoothness), 0f);
+					transform.rotation = lookRotation;
+					if (transform.rotation.eulerAngles.y == lookRotation.eulerAngles.y) {						
+						lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
+					}
+				} else {					
+					Quaternion lookRotation;
+					lookRotation = Quaternion.Euler (new Vector3 (0f, Mathf.SmoothDampAngle (transform.rotation.eulerAngles.y, Mathf.Rad2Deg * Mathf.Atan2 (totalTurn, totalForward) + lastCameraRotation.eulerAngles.y, ref vel2, smoothness), 0f));
+					transform.rotation = lookRotation;
+				}
 			}
-			rbody.MovePosition (rbody.position + movement);
 		}
     }
 
     void Move()
     {
-        Vector3 forwardMovement = transform.forward * forwardInput * forwardSpeed * Time.deltaTime;
-		//Vector3 horizontalMovement = transform.right * turnInput * forwardSpeed * Time.deltaTime;
-		rbody.MovePosition(rbody.position + forwardMovement);
+		if (!cameraMoving) {
+			Vector3 forwardMovement = transform.forward * (Mathf.Abs (forwardInput) + Mathf.Abs (turnInput)) * forwardSpeed * Time.deltaTime;
+			rbody.MovePosition (rbody.position + forwardMovement);
+		} else {
+			Vector3 forwardMovement = transform.forward * (forwardInput) * forwardSpeed * Time.deltaTime;
+			rbody.MovePosition(rbody.position + forwardMovement);
+		}
     }
-    /**
+
+	/**
      * this method is suposed to snap the player to the forward vector of the camera if they move.
      * it doesnt work with the rigidbody method i changed to.
      **/

@@ -33,6 +33,7 @@ public class TP_Camera : MonoBehaviour {
     private Vector3 position = Vector3.zero;
     private Vector3 desiredPosition = Vector3.zero;
     private float desiredDistance = 0f;
+	bool moveForward = false;
 
 
     public bool invertControls;
@@ -96,11 +97,10 @@ public class TP_Camera : MonoBehaviour {
     }
 
     void UpdatePosition()
-    {
-        float posX = Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, xSmooth);
-        float posY = Mathf.SmoothDamp(position.y, desiredPosition.y, ref velY, ySmooth);
-        float posZ = Mathf.SmoothDamp(position.z, desiredPosition.z, ref velZ, xSmooth);
-
+	{   float posX = Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, xSmooth);
+		float posY = Mathf.SmoothDamp(position.y, desiredPosition.y, ref velY, ySmooth);
+		float posZ = 0f;
+		posZ = Mathf.SmoothDamp(position.z, desiredPosition.z, ref velZ, xSmooth);
         position = new Vector3(posX, posY, posZ);
         transform.position = position;
 		transform.LookAt(TargetLookAt);
@@ -115,6 +115,10 @@ public class TP_Camera : MonoBehaviour {
     }
 
 	void OnTriggerEnter(Collider collider){
-		
+		moveForward = true;
+	}
+
+	void OnTriggerExit(Collider collider){
+		moveForward = false;
 	}
 }
