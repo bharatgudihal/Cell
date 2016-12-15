@@ -31,13 +31,14 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision collision){
+	void OnTriggerEnter(Collider collision){
+		print (collision.gameObject.tag);
 		if (collision.gameObject.CompareTag ("Battery")) {
 			battery = collision.gameObject;
 		}
 	}
 
-	void OnCollisionExit(Collision collision){
+	void OnTriggerExit(Collider collision){
 		battery = null;
 	}
 }

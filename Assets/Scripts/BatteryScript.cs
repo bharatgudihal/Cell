@@ -17,13 +17,13 @@ public class BatteryScript : MonoBehaviour {
 		
 	}
 
-	void OnCollisionEnter(Collision collision){
+	void OnTriggerEnter(Collider collision){
 		if (collision.gameObject.CompareTag ("Player")) {
 			UI.SetActive (true);
 		}
 	}
 
-	void OnCollisionExit(Collision collision){
+	void OnTriggerExit(Collider collision){
 		if (collision.gameObject.CompareTag ("Player")) {
 			UI.SetActive (false);
 		}
