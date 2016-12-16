@@ -5,11 +5,11 @@ using UnityEngine;
 public class BatteryScript : MonoBehaviour {
 
 	[SerializeField]
-	GameObject UI;
+	GameObject outLine;
 
 	// Use this for initialization
 	void Start () {
-		UI.SetActive (false);
+		outLine.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -19,13 +19,13 @@ public class BatteryScript : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collision){
 		if (collision.gameObject.CompareTag ("Player")) {
-			UI.SetActive (true);
+			outLine.SetActive (true);
 		}
 	}
 
 	void OnTriggerExit(Collider collision){
 		if (collision.gameObject.CompareTag ("Player")) {
-			UI.SetActive (false);
+			outLine.SetActive (false);
 		}
 	}
 }

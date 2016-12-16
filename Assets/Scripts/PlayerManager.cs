@@ -31,8 +31,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider collision){
-		print (collision.gameObject.tag);
+	void OnTriggerEnter(Collider collision){		
 		if (collision.gameObject.CompareTag ("Battery")) {
 			battery = collision.gameObject;
 		}
