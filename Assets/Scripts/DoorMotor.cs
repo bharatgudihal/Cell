@@ -15,7 +15,10 @@ public class DoorMotor : MonoBehaviour {
 
     public bool doorOpen;
     public bool activate;
-    public bool canUse = false;
+    public bool canUse;
+
+	[SerializeField]
+	bool enabled;
 
     public float doorSpeed=500f;
 	
@@ -24,7 +27,7 @@ public class DoorMotor : MonoBehaviour {
     {
 
         
-        if(Input.GetKeyDown(KeyCode.Q)&&canUse)
+		if((Input.GetKey(KeyCode.Q)||Input.GetKey("joystick button 0")) && canUse && enabled)
         {
             activate = true;
             
