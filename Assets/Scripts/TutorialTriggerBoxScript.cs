@@ -7,6 +7,9 @@ public class TutorialTriggerBoxScript : MonoBehaviour {
 	[SerializeField]
 	Light spotLight;
 
+	[SerializeField]
+	GameObject killBox;
+
 	static bool done;
 
 	// Use this for initialization
@@ -30,5 +33,8 @@ public class TutorialTriggerBoxScript : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider){
 		spotLight.gameObject.SetActive(false);
+		if (killBox != null) {
+			killBox.SetActive (true);
+		}
 	}
 }

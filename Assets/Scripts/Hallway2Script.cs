@@ -6,6 +6,10 @@ public class Hallway2Script : MonoBehaviour {
 
 	[SerializeField]
 	Light[] lights;
+
+	[SerializeField]
+	GameObject[] killBoxes;
+
 	int count;
 	bool waiting;
 	bool reverse;
@@ -27,6 +31,11 @@ public class Hallway2Script : MonoBehaviour {
 				lights [2].gameObject.SetActive (false);
 				lights [3].gameObject.SetActive (false);
 				lights [4].gameObject.SetActive (false);
+				killBoxes[0].SetActive(false);
+				killBoxes[1].SetActive(true);
+				killBoxes[2].SetActive(true);
+				killBoxes[3].SetActive(true);
+				killBoxes[4].SetActive(true);
 				StartCoroutine (Sleep ());
 				break;
 			case 1:
@@ -35,6 +44,11 @@ public class Hallway2Script : MonoBehaviour {
 				lights [2].gameObject.SetActive (false);
 				lights [3].gameObject.SetActive (false);
 				lights [4].gameObject.SetActive (false);
+				killBoxes[0].SetActive(true);
+				killBoxes[1].SetActive(false);
+				killBoxes[2].SetActive(true);
+				killBoxes[3].SetActive(true);
+				killBoxes[4].SetActive(true);
 				StartCoroutine (Sleep ());
 				break;
 			case 2:
@@ -43,6 +57,11 @@ public class Hallway2Script : MonoBehaviour {
 				lights [2].gameObject.SetActive (true);
 				lights [3].gameObject.SetActive (false);
 				lights [4].gameObject.SetActive (false);
+				killBoxes[0].SetActive(true);
+				killBoxes[1].SetActive(true);
+				killBoxes[2].SetActive(false);
+				killBoxes[3].SetActive(true);
+				killBoxes[4].SetActive(true);
 				StartCoroutine (Sleep ());
 				break;
 			case 3:
@@ -51,6 +70,11 @@ public class Hallway2Script : MonoBehaviour {
 				lights [2].gameObject.SetActive (false);
 				lights [3].gameObject.SetActive (true);
 				lights [4].gameObject.SetActive (false);
+				killBoxes[0].SetActive(true);
+				killBoxes[1].SetActive(true);
+				killBoxes[2].SetActive(true);
+				killBoxes[3].SetActive(false);
+				killBoxes[4].SetActive(true);
 				StartCoroutine (Sleep ());
 				break;
 			case 4:
@@ -59,6 +83,11 @@ public class Hallway2Script : MonoBehaviour {
 				lights [2].gameObject.SetActive (false);
 				lights [3].gameObject.SetActive (false);
 				lights [4].gameObject.SetActive (true);
+				killBoxes[0].SetActive(true);
+				killBoxes[1].SetActive(true);
+				killBoxes[2].SetActive(true);
+				killBoxes[3].SetActive(true);
+				killBoxes[4].SetActive(false);
 				StartCoroutine (Sleep ());
 				break;
 			default:

@@ -15,6 +15,9 @@ public class Hallway3SCript : MonoBehaviour {
 	[SerializeField]
 	Light[] lights;
 
+	[SerializeField]
+	GameObject[] killBoxes;
+
 	int count;
 	bool reverse;
 	bool wait;
@@ -50,9 +53,12 @@ public class Hallway3SCript : MonoBehaviour {
 		foreach (Light light in lights) {
 			light.gameObject.SetActive (false);
 		}
+		foreach (GameObject killbox in killBoxes) {
+			killbox.SetActive (true);
+		}
 		foreach (int i in pattern[count].elements) {
-			print ("Light on " + i);
 			lights [i-1].gameObject.SetActive (true);
+			killBoxes [i - 1].SetActive (false);
 		}
 		wait = false;
 	}

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
@@ -7,12 +8,25 @@ public class PlayerManager : MonoBehaviour {
 
 	[SerializeField]
 	GameObject[] UIBatteries;
+
+	[SerializeField]
+	Image healthImage;
+
 	int batteryCount;
+
+	public float health;
+
+	[SerializeField]
+	float maxHealth;
+
+	[SerializeField]
+	float healthRegenRate;
 
 	// Use this for initialization
 	void Start () {
 		battery = null;
 		batteryCount = 0;
+		health = maxHealth;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +34,17 @@ public class PlayerManager : MonoBehaviour {
 		if (battery != null && Input.GetKey ("joystick button 0")) {
 			battery.SetActive (false);
 			AddBattery ();
+		}
+		if (health > 0f) {
+			healthImage.color = new Color(healthImage.color.r,healthImage.color.g,healthImage.color.b,1f - (health / maxHealth));
+			if (health < maxHealth) {
+				health += healthRegenRate;
+				if (health > maxHealth) {
+					health = maxHealth;
+				}
+			}
+		} else {
+			
 		}
 	}
 
@@ -29,6 +54,7 @@ public class PlayerManager : MonoBehaviour {
 		if (batteryCount > UIBatteries.Length-1) {
 			batteryCount = UIBatteries.Length - 1;
 		}
+		battery = null;
 	}
 
 	void OnTriggerEnter(Collider collision){		
