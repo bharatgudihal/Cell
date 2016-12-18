@@ -18,7 +18,6 @@ public class KillBoxScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider collider){
-		print ("TriggerStay " + collider);
 		if(collider.gameObject.CompareTag("Player")){
 			collider.gameObject.GetComponent<PlayerManager> ().health -= killRate;
 		}

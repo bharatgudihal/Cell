@@ -32,7 +32,17 @@ public class DoorMotor : MonoBehaviour {
 	Vector3 vel;
 	bool hide;
 
+	int batteryCount;
+
+	[SerializeField]
+	int numberOfBatteriesRequired;
+
 	void Start(){
+		HideAllIcons ();
+		batteryCount = 0;
+	}
+
+	void HideAllIcons(){
 		if (frontAllow != null) {			
 			frontAllow.SetActive (false);
 		}
@@ -41,6 +51,15 @@ public class DoorMotor : MonoBehaviour {
 		}
 		if (backAllow != null) {
 			backAllow.SetActive (false);
+		}
+	}
+
+	void ShowIcons(){
+		if (enabled) {
+			frontAllow.SetActive (true);
+			backAllow.SetActive (true);
+		} else {
+			frontDeny.SetActive (true);
 		}
 	}
 	
@@ -55,15 +74,7 @@ public class DoorMotor : MonoBehaviour {
         }
         if (!doorOpen && activate)
         {			
-			if (frontAllow != null) {			
-				frontAllow.SetActive (false);
-			}
-			if (frontDeny != null) {
-				frontDeny.SetActive (false);
-			}
-			if (backAllow != null) {
-				backAllow.SetActive (false);
-			}
+			HideAllIcons ();
 			rDoor.transform.position = Vector3.SmoothDamp(rDoor.transform.position, rDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
 			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorOpen.transform.position)
@@ -81,6 +92,9 @@ public class DoorMotor : MonoBehaviour {
 			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorClose.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorClose.transform.position)
             {
+				if (canUse) {
+					ShowIcons ();
+				}
 				hide = false;               
                 activate = false;
                 doorOpen = false;
@@ -100,35 +114,49 @@ public class DoorMotor : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             canUse = true;
-			if (enabled) {
-				frontAllow.SetActive (true);
-				backAllow.SetActive (true);
+			if (!doorOpen) {
+				ShowIcons ();
 			} else {
-				frontDeny.SetActive (true);
+				HideAllIcons ();
 			}
         }
     }
+
+	/*void OnTriggerStay(Collider collider){
+		if (doorOpen) {
+			ShowIcons ();
+		}
+	}*/
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             canUse = false;
-			if (enabled) {
-				frontAllow.SetActive (false);
-				backAllow.SetActive (false);
-			} else {
-				frontDeny.SetActive (false);
-			}
+			HideAllIcons ();
         }
     }
 
 	public void SwitchToActive(){
-		enabled = true;
-		if (frontDeny.activeSelf) {
-			backAllow.SetActive (true);
-			frontAllow.SetActive (true);
-			frontDeny.SetActive (false);
+		batteryCount++;
+		if (numberOfBatteriesRequired == batteryCount) {
+			enabled = true;
+			print (frontDeny.activeSelf);
+			if (frontDeny.activeSelf) {
+				backAllow.SetActive (true);
+				frontAllow.SetActive (true);
+				frontDeny.SetActive (false);
+			}
+		}
+	}
+
+	public void SwitchToInActive(){
+		batteryCount--;
+		enabled = false;
+		if (frontAllow.activeSelf) {
+			backAllow.SetActive (false);
+			frontAllow.SetActive (false);
+			frontDeny.SetActive (true);
 		}
 	}
 
