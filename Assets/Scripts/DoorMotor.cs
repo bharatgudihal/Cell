@@ -21,7 +21,8 @@ public class DoorMotor : MonoBehaviour {
 	bool enabled;
 
     public float doorSpeed=500f;
-	
+
+	Vector3 vel;
 	
     public void Update()
     {
@@ -34,20 +35,21 @@ public class DoorMotor : MonoBehaviour {
         }
         if (!doorOpen && activate)
         {
-            rDoor.transform.position = Vector3.Lerp(rDoor.transform.position, rDoorOpen.transform.position, doorSpeed * Time.deltaTime);
-            lDoor.transform.position = Vector3.Lerp(lDoor.transform.position, lDoorOpen.transform.position, doorSpeed * Time.deltaTime);
+			rDoor.transform.position = Vector3.SmoothDamp(rDoor.transform.position, rDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
+			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorOpen.transform.position)
             {
                 
                 activate = false;
                 doorOpen = true;
+				StartCoroutine (CloseDoor ());
             }      
         }
         if(doorOpen && activate)
         {
             
-            rDoor.transform.position = Vector3.Lerp(rDoor.transform.position, rDoorClose.transform.position, doorSpeed * Time.deltaTime);
-            lDoor.transform.position = Vector3.Lerp(lDoor.transform.position, lDoorClose.transform.position, doorSpeed * Time.deltaTime);
+			rDoor.transform.position = Vector3.SmoothDamp(rDoor.transform.position, rDoorClose.transform.position, ref vel, doorSpeed * Time.deltaTime);
+			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorClose.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorClose.transform.position)
             {
                 
@@ -58,6 +60,12 @@ public class DoorMotor : MonoBehaviour {
         }
 
     }
+
+	IEnumerator CloseDoor(){
+		yield return new WaitForSeconds (3f);
+		activate = true;
+	}
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
