@@ -22,7 +22,27 @@ public class DoorMotor : MonoBehaviour {
 
     public float doorSpeed=500f;
 
+	[SerializeField]
+	GameObject frontAllow;
+	[SerializeField]
+	GameObject frontDeny;
+	[SerializeField]
+	GameObject backAllow;
+
 	Vector3 vel;
+	bool hide;
+
+	void Start(){
+		if (frontAllow != null) {			
+			frontAllow.SetActive (false);
+		}
+		if (frontDeny != null) {
+			frontDeny.SetActive (false);
+		}
+		if (backAllow != null) {
+			backAllow.SetActive (false);
+		}
+	}
 	
     public void Update()
     {
@@ -34,7 +54,16 @@ public class DoorMotor : MonoBehaviour {
             
         }
         if (!doorOpen && activate)
-        {
+        {			
+			if (frontAllow != null) {			
+				frontAllow.SetActive (false);
+			}
+			if (frontDeny != null) {
+				frontDeny.SetActive (false);
+			}
+			if (backAllow != null) {
+				backAllow.SetActive (false);
+			}
 			rDoor.transform.position = Vector3.SmoothDamp(rDoor.transform.position, rDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
 			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorOpen.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorOpen.transform.position)
@@ -52,7 +81,7 @@ public class DoorMotor : MonoBehaviour {
 			lDoor.transform.position = Vector3.SmoothDamp(lDoor.transform.position, lDoorClose.transform.position, ref vel, doorSpeed * Time.deltaTime);
             if (lDoor.transform.position == lDoorClose.transform.position)
             {
-                
+				hide = false;               
                 activate = false;
                 doorOpen = false;
             }
@@ -71,14 +100,36 @@ public class DoorMotor : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             canUse = true;
+			if (enabled) {
+				frontAllow.SetActive (true);
+				backAllow.SetActive (true);
+			} else {
+				frontDeny.SetActive (true);
+			}
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             canUse = false;
+			if (enabled) {
+				frontAllow.SetActive (false);
+				backAllow.SetActive (false);
+			} else {
+				frontDeny.SetActive (false);
+			}
         }
     }
+
+	public void SwitchToActive(){
+		enabled = true;
+		if (frontDeny.activeSelf) {
+			backAllow.SetActive (true);
+			frontAllow.SetActive (true);
+			frontDeny.SetActive (false);
+		}
+	}
 
 }
