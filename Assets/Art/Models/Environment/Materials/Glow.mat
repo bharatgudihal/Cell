@@ -121,7 +121,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.84273344, g: 0.85294116, b: 0.112889275, a: 1}
+      second: {r: 0.9994929, g: 1, b: 0.9632353, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0.7205882, g: 0.6778352, b: 0.10067042, a: 1}
+      second: {r: 9.872853, g: 13.036, b: 11.465334, a: 1}
