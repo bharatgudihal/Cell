@@ -12,6 +12,9 @@ public class TutorialTriggerBoxScript : MonoBehaviour {
 
 	static bool done;
 
+	[SerializeField]
+	AudioClip clip;
+
 	// Use this for initialization
 	void Start () {
 		done = false;
@@ -32,6 +35,7 @@ public class TutorialTriggerBoxScript : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider collider){
+		spotLight.GetComponent<AudioSource>().PlayOneShot(clip);
 		spotLight.gameObject.SetActive(false);
 		if (killBox != null) {
 			killBox.SetActive (true);

@@ -19,10 +19,10 @@ public class BatteryScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gameObject.CompareTag ("BatteryHolder") && GetComponent<MeshRenderer> ().enabled && door != null && !batteryPlaced) {
+		if (gameObject.CompareTag ("BatteryHolder") && gameObject.GetComponent<MeshRenderer> ().enabled && door != null && !batteryPlaced) {
 			batteryPlaced = true;
-			door.GetComponent<DoorMotor> ().SwitchToActive ();
-		} else if (gameObject.CompareTag ("BatteryHolder") && !GetComponent<MeshRenderer> ().enabled && door != null && batteryPlaced){
+            door.GetComponent<DoorMotor>().SwitchToActive();
+		} else if (gameObject.CompareTag ("BatteryHolder") && !gameObject.GetComponent<MeshRenderer> ().enabled && door != null && batteryPlaced){
 			batteryPlaced = false;
 			door.GetComponent<DoorMotor> ().SwitchToInActive ();
 		}

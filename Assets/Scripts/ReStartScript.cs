@@ -17,6 +17,9 @@ public class ReStartScript : MonoBehaviour {
 	[SerializeField]
 	GameObject[] buttons;
 
+    [SerializeField]
+    Text text;
+
 	public bool active;
 
     // Use this for initialization
@@ -45,9 +48,11 @@ public class ReStartScript : MonoBehaviour {
 			if (Input.GetKeyDown ("joystick button 0")) {
 				if (selectedButton == 0) {
 					ReStartLevel ();
+                    gameObject.SetActive(false);
 				} else {
 					QuitToMain ();
-				}
+                    gameObject.SetActive(false);
+                }
 			}
 		}
 	}
@@ -60,5 +65,10 @@ public class ReStartScript : MonoBehaviour {
     public void QuitToMain()
     {
         SceneManager.LoadScene(0);//load the start menu
+    }
+
+    public void SetText(string message)
+    {
+        text.text = message;
     }
 }

@@ -18,6 +18,9 @@ public class Hallway3SCript : MonoBehaviour {
 	[SerializeField]
 	GameObject[] killBoxes;
 
+	[SerializeField]
+	AudioClip clip;
+
 	int count;
 	bool reverse;
 	bool wait;
@@ -51,13 +54,14 @@ public class Hallway3SCript : MonoBehaviour {
 			}
 		}
 		foreach (Light light in lights) {
-			light.gameObject.SetActive (false);
+			light.enabled = false;
 		}
 		foreach (GameObject killbox in killBoxes) {
 			killbox.SetActive (true);
 		}
 		foreach (int i in pattern[count].elements) {
-			lights [i-1].gameObject.SetActive (true);
+			lights [i-1].enabled = true;
+			lights [i - 1].GetComponent<AudioSource> ().PlayOneShot (clip);
 			killBoxes [i - 1].SetActive (false);
 		}
 		wait = false;

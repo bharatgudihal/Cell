@@ -13,6 +13,7 @@ TagManager:
   - HUD
   - Battery
   - BatteryHolder
+  - End
   layers:
   - Default
   - TransparentFX

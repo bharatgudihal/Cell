@@ -28,7 +28,14 @@ public class PlayerManager : MonoBehaviour {
 	[SerializeField]
 	ReStartScript restartScript;
 
+    [SerializeField]
+    Light EndLight;
 
+    GameObject mainCamera;
+    GameObject endCamera;
+    GameObject zoey;
+
+    AudioSource endAudio;
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +44,18 @@ public class PlayerManager : MonoBehaviour {
 		health = maxHealth;
 		restartUI.SetActive (false);
 		restartScript.active = false;
-	}
+        endCamera = GameObject.Find("EndCamera");
+        mainCamera = GameObject.Find("Main Camera");
+        endCamera.SetActive(false);        
+        endAudio = GameObject.Find("ExitRoom").GetComponent<AudioSource>();
+        foreach (Transform child in transform)
+        {
+            if(child.gameObject.name == "Zoey")
+            {
+                zoey = child.gameObject;
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {		
@@ -45,7 +63,7 @@ public class PlayerManager : MonoBehaviour {
 			if (battery.CompareTag ("Battery")) {
 				battery.SetActive (false);
 				AddBattery ();
-			} else if (battery.CompareTag ("BatteryHolder")) {
+			} else if (battery.CompareTag ("BatteryHolder") && (batteryCount > -1 || battery.GetComponent<MeshRenderer>().enabled)) {
 				if (battery.GetComponent<MeshRenderer> ().enabled) {
 					battery.GetComponent<MeshRenderer> ().enabled = false;
 					AddBattery ();
@@ -96,12 +114,33 @@ public class PlayerManager : MonoBehaviour {
 	void OnTriggerEnter(Collider collision){		
 		if (collision.gameObject.CompareTag ("Battery")) {
 			battery = collision.gameObject;
-		} else if (collision.gameObject.CompareTag ("BatteryHolder") && batteryCount >= 0) {
+		} else if (collision.gameObject.CompareTag ("BatteryHolder") && batteryCount >= -1) {
 			battery = collision.gameObject;
-		}
+		}else if (collision.gameObject.CompareTag("End"))
+        {
+            StartCoroutine(EndRoutine());
+        }
 	}
 
 	void OnTriggerExit(Collider collision){
-		battery = null;
-	}
+		battery = null;        
+    }
+
+    IEnumerator EndRoutine()
+    {
+        
+        GetComponent<PlayerController>().stop = true;
+        EndLight.enabled = false;
+        yield return new WaitForSeconds(1f);
+        mainCamera.SetActive(false);
+        endCamera.SetActive(true);
+        zoey.SetActive(false);
+        endAudio.Play();
+        yield return new WaitForSeconds(endAudio.clip.length);
+        restartUI.SetActive(true);
+        restartScript.active = true;
+        restartScript.SetText("You cannot escape the darkness\n Play Again?");
+        healthImage.color = new Color(healthImage.color.r, healthImage.color.g, healthImage.color.b, 0f);
+        yield return 0;
+    }
 }

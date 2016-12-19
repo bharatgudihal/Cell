@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	float smoothness;
 
+	AudioSource footSteps;
+
 	public Vector3 MoveVector { get; set; }
 // this is a carry over from a tutorial i found. it was used in the snap method I wanted to use.
 
@@ -51,6 +53,7 @@ public class PlayerController : MonoBehaviour
 	{
 		stop = false;
 		lastStoppedCameraRotation = playerCamera.transform.rotation.eulerAngles.y;
+		footSteps = GetComponent<AudioSource> ();
 	}
 	// FixedUpdate is for physics interactions
 	void FixedUpdate ()

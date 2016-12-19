@@ -10,6 +10,9 @@ public class TutorialScript : MonoBehaviour {
 
 	static GameObject[] lights = new GameObject[5];
 
+	[SerializeField]
+	AudioClip[] clips;
+
 	Animator bodyAnimator;
 
 	void Awake(){
@@ -23,14 +26,15 @@ public class TutorialScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {		
 		bodyAnimator = GetComponent<Animator> ();
-		lights [0] = GameObject.Find ("TutSpotlight (13)").gameObject;
-		lights [1] = GameObject.Find ("TutSpotlight (12)").gameObject;
-		lights [2] = GameObject.Find ("TutSpotlight (11)").gameObject;
-		lights [3] = GameObject.Find ("TutSpotlight (10)").gameObject;
-		lights [4] = GameObject.Find ("TutSpotlight (9)").gameObject;
+		lights [0] = GameObject.Find ("TutSpotlight (13)");
+		lights [1] = GameObject.Find ("TutSpotlight (12)");
+		lights [2] = GameObject.Find ("TutSpotlight (11)");
+		lights [3] = GameObject.Find ("TutSpotlight (10)");
+		lights [4] = GameObject.Find ("TutSpotlight (9)");
 		player = GameObject.Find ("CharacterController").GetComponent<PlayerController> ();
+		bodyAnimator = GameObject.Find ("Torso").GetComponent<Animator> ();
 		foreach (GameObject go in lights) {
-			go.SetActive (false);
+			go.GetComponent<Light>().enabled = false;
 		}
 	}
 	
@@ -44,17 +48,20 @@ public class TutorialScript : MonoBehaviour {
 	void StartTutorial(){
 		start = true;
 		player.stop = true;
-		lights [0].SetActive (true);
+		lights [0].GetComponent<Light>().enabled = true;
+		lights [0].GetComponent<AudioSource> ().PlayOneShot (clips [0]);
 		StartCoroutine (TutorialSteps());
 	}
 
 	IEnumerator TutorialSteps(){		
 		yield return new WaitForSeconds (2f);
 		print ("Animation played");
-		lights [0].SetActive (false);
+		lights [0].GetComponent<AudioSource> ().PlayOneShot (clips [1]);
+		lights [0].GetComponent<Light>().enabled = false;
 		yield return new WaitForSeconds (2f);
+		lights [0].GetComponent<AudioSource> ().PlayOneShot (clips [0]);
 		foreach (GameObject light in lights) {
-			light.SetActive (true);
+			light.GetComponent<Light>().enabled = true;
 		}
 		player.stop = false;
 	}
