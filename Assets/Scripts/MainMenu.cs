@@ -30,7 +30,7 @@ public class MainMenu : MonoBehaviour {
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene("WhiteBox", LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
     public void ExitGame()
     {

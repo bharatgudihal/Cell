@@ -12,6 +12,8 @@ TagManager:
   - BuddyBot
   - HUD
   - Battery
+  - BatteryHolder
+  - End
   layers:
   - Default
   - TransparentFX
