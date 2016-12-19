@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Carpet
+  - Glass
+  - MetalHeavy
+  - MetalLight
+  - Rubber
+  - BuddyBot
+  - HUD
+  - Battery
+  - BatteryHolder
+  - End
   layers:
   - Default
   - TransparentFX
@@ -13,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - DynamicObjects
+  - LightingHidden
   - 
   - 
   - 
