@@ -7,6 +7,15 @@ public class GameManager : MonoBehaviour {
 	public delegate void StartTutorial();
 	public static event StartTutorial startTutorial;
 
+	static GameManager instance = null;
+
+	void Awake(){
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad (instance);
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		

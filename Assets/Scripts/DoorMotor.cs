@@ -18,7 +18,10 @@ public class DoorMotor : MonoBehaviour {
     public bool canUse;
 
 	[SerializeField]
-	bool enabled;
+	float closeAfter;
+
+	[SerializeField]
+	bool isEnabled;
 
     public float doorSpeed=500f;
 
@@ -55,7 +58,7 @@ public class DoorMotor : MonoBehaviour {
 	}
 
 	void ShowIcons(){
-		if (enabled) {
+		if (isEnabled) {
 			frontAllow.SetActive (true);
 			backAllow.SetActive (true);
 		} else {
@@ -67,7 +70,7 @@ public class DoorMotor : MonoBehaviour {
     {
 
         
-		if((Input.GetKey(KeyCode.Q)||Input.GetKey("joystick button 0")) && canUse && enabled)
+		if((Input.GetKey(KeyCode.Q)||Input.GetKey("joystick button 0")) && canUse && isEnabled)
         {
             activate = true;
             
@@ -105,7 +108,7 @@ public class DoorMotor : MonoBehaviour {
     }
 
 	IEnumerator CloseDoor(){
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (closeAfter);
 		activate = true;
 	}
 
@@ -140,7 +143,7 @@ public class DoorMotor : MonoBehaviour {
 	public void SwitchToActive(){
 		batteryCount++;
 		if (numberOfBatteriesRequired == batteryCount) {
-			enabled = true;
+			isEnabled = true;
 			print (frontDeny.activeSelf);
 			if (frontDeny.activeSelf) {
 				backAllow.SetActive (true);
@@ -152,7 +155,7 @@ public class DoorMotor : MonoBehaviour {
 
 	public void SwitchToInActive(){
 		batteryCount--;
-		enabled = false;
+		isEnabled = false;
 		if (frontAllow.activeSelf) {
 			backAllow.SetActive (false);
 			frontAllow.SetActive (false);

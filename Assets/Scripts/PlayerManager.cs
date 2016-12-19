@@ -22,20 +22,30 @@ public class PlayerManager : MonoBehaviour {
 	[SerializeField]
 	float healthRegenRate;
 
+	[SerializeField]
+	GameObject restartUI;
+
+	[SerializeField]
+	ReStartScript restartScript;
+
+
+
 	// Use this for initialization
 	void Start () {
 		battery = null;
 		batteryCount = -1;
 		health = maxHealth;
+		restartUI.SetActive (false);
+		restartScript.active = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {		
 		if (battery != null && Input.GetKeyDown ("joystick button 0")) {			
 			if (battery.CompareTag ("Battery")) {
 				battery.SetActive (false);
 				AddBattery ();
-			}else if(battery.CompareTag ("BatteryHolder")){
+			} else if (battery.CompareTag ("BatteryHolder")) {
 				if (battery.GetComponent<MeshRenderer> ().enabled) {
 					battery.GetComponent<MeshRenderer> ().enabled = false;
 					AddBattery ();
@@ -46,15 +56,18 @@ public class PlayerManager : MonoBehaviour {
 			}
 		}
 		if (health > 0f) {
-			healthImage.color = new Color(healthImage.color.r,healthImage.color.g,healthImage.color.b,1f - (health / maxHealth));
+			healthImage.color = new Color (healthImage.color.r, healthImage.color.g, healthImage.color.b, 1f - (health / maxHealth));
 			if (health < maxHealth) {
 				health += healthRegenRate;
 				if (health > maxHealth) {
 					health = maxHealth;
 				}
 			}
-		} else {
-			//TODO:Death screen
+		} else {			
+			restartUI.SetActive (true);
+			restartScript.active = true;
+			healthImage.color = new Color (healthImage.color.r, healthImage.color.g, healthImage.color.b, 0f);
+			GetComponent<PlayerController> ().stop = true;
 		}
 	}
 

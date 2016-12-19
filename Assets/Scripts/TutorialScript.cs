@@ -6,11 +6,9 @@ public class TutorialScript : MonoBehaviour {
 
 	bool start = false;
 
-	[SerializeField]
 	PlayerController player;
 
-	[SerializeField]
-	GameObject[] lights;
+	static GameObject[] lights = new GameObject[5];
 
 	Animator bodyAnimator;
 
@@ -23,8 +21,17 @@ public class TutorialScript : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () {		
 		bodyAnimator = GetComponent<Animator> ();
+		lights [0] = GameObject.Find ("TutSpotlight (13)").gameObject;
+		lights [1] = GameObject.Find ("TutSpotlight (12)").gameObject;
+		lights [2] = GameObject.Find ("TutSpotlight (11)").gameObject;
+		lights [3] = GameObject.Find ("TutSpotlight (10)").gameObject;
+		lights [4] = GameObject.Find ("TutSpotlight (9)").gameObject;
+		player = GameObject.Find ("CharacterController").GetComponent<PlayerController> ();
+		foreach (GameObject go in lights) {
+			go.SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
@@ -41,7 +48,7 @@ public class TutorialScript : MonoBehaviour {
 		StartCoroutine (TutorialSteps());
 	}
 
-	IEnumerator TutorialSteps(){
+	IEnumerator TutorialSteps(){		
 		yield return new WaitForSeconds (2f);
 		print ("Animation played");
 		lights [0].SetActive (false);
