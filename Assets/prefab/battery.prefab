@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4147978064007060}
   - component: {fileID: 33450058706810554}
   - component: {fileID: 23713711601521018}
-  - component: {fileID: 95886909179486320}
   - component: {fileID: 54935228283848690}
   - component: {fileID: 65606890423224060}
   - component: {fileID: 136187978330156880}
@@ -122,7 +121,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a7b53c91852dd2f459b478032fc11c05, type: 2}
+  - {fileID: 2100000, guid: 1c493ae4423744249a1d2e565f3f934e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,23 +197,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95886909179486320
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1803440719438266}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4b003e8138596b04f9f6e1dbc128a5e6, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114154647169487804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outLine: {fileID: 1417707191296394}
+  door: {fileID: 0}
 --- !u!136 &136187978330156880
 CapsuleCollider:
   m_ObjectHideFlags: 1
